@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2022 at 10:52 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Generation Time: Oct 28, 2024 at 08:51 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -34,9 +33,10 @@ CREATE TABLE `debt` (
   `owner` varchar(250) NOT NULL,
   `reason` text NOT NULL,
   `damount` int(11) NOT NULL,
+  `repay_date` date NOT NULL,
   `pamount` int(11) NOT NULL,
   `remain` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -51,7 +51,14 @@ CREATE TABLE `earning` (
   `source` varchar(250) NOT NULL,
   `amount` int(11) NOT NULL,
   `total` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `earning`
+--
+
+INSERT INTO `earning` (`id`, `userId`, `date`, `source`, `amount`, `total`) VALUES
+(1, 8, '2024-02-18', 'salary', 30000, 30000);
 
 -- --------------------------------------------------------
 
@@ -67,7 +74,14 @@ CREATE TABLE `expense` (
   `bamount` int(11) NOT NULL,
   `ramount` int(11) NOT NULL,
   `total` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `expense`
+--
+
+INSERT INTO `expense` (`id`, `userId`, `date`, `item`, `bamount`, `ramount`, `total`) VALUES
+(1, 8, '2024-02-23', 'kitchen', 1000, 1200, 1200);
 
 -- --------------------------------------------------------
 
@@ -81,7 +95,14 @@ CREATE TABLE `savings` (
   `date` date NOT NULL,
   `amount` int(11) NOT NULL,
   `total` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `savings`
+--
+
+INSERT INTO `savings` (`id`, `userId`, `date`, `amount`, `total`) VALUES
+(1, 8, '2024-02-23', 200, 200);
 
 -- --------------------------------------------------------
 
@@ -95,8 +116,16 @@ CREATE TABLE `user` (
   `sname` varchar(250) NOT NULL,
   `uname` varchar(250) NOT NULL,
   `email` varchar(250) NOT NULL,
-  `password` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `password` varchar(250) NOT NULL,
+  `remember_token` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `fname`, `sname`, `uname`, `email`, `password`, `remember_token`) VALUES
+(8, 'Admin', 'User', 'admin', 'admin@gmail.com', '12345678', NULL);
 
 --
 -- Indexes for dumped tables
@@ -144,31 +173,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `debt`
 --
 ALTER TABLE `debt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `earning`
 --
 ALTER TABLE `earning`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `expense`
 --
 ALTER TABLE `expense`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `savings`
 --
 ALTER TABLE `savings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

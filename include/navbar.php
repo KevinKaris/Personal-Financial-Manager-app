@@ -1,4 +1,9 @@
 <style>
+  #navbarCollapse {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+  }
   @media (max-width: 550px) {
     #navbarCollapse {
       position: absolute;
